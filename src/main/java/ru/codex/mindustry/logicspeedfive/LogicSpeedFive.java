@@ -16,6 +16,7 @@ import mindustry.world.blocks.logic.LogicBlock;
 /** Configurable instruction-rate multipliers for the three vanilla logic processors. */
 public final class LogicSpeedFive extends Plugin {
     private static final String PREFIX = "logicspeedfive.";
+    private static final String CATEGORY_NAME = "setting.logicspeedfive.category.name";
     private static final String ENABLED = PREFIX + "enabled";
     private static final String MICRO_ENABLED = PREFIX + "micro.enabled";
     private static final String LOGIC_ENABLED = PREFIX + "logic.enabled";
@@ -44,13 +45,10 @@ public final class LogicSpeedFive extends Plugin {
         // Dedicated servers have no UI. Desktop hosts use local settings and
         // this does not add a mod requirement for guests.
         if (!Vars.headless && Vars.ui != null) {
-            Vars.ui.settings.addCategory("Logic Speed Five", (SettingsTable table) -> {
+            Vars.ui.settings.addCategory(Core.bundle.get(CATEGORY_NAME, "Logic Speed Five"), (SettingsTable table) -> {
                 table.checkPref(ENABLED, true, value -> refreshRates());
-                table.category(PREFIX + "micro.section");
                 addProcessorSettings(table, processors[0]);
-                table.category(PREFIX + "logic.section");
                 addProcessorSettings(table, processors[1]);
-                table.category(PREFIX + "hyper.section");
                 addProcessorSettings(table, processors[2]);
             });
         }
@@ -59,9 +57,10 @@ public final class LogicSpeedFive extends Plugin {
     }
 
     private void addProcessorSettings(SettingsTable table, Processor processor) {
+        table.add().height(10f).row();
         table.checkPref(processor.enabledKey, true, value -> refreshRates());
         table.sliderPref(processor.multiplierKey, 5, 1, 15,
-            value -> value + "x", value -> refreshRates());
+            value -> value + "×", value -> refreshRates());
     }
 
     /** Reapply to block defaults and existing buildings after each setting change. */
