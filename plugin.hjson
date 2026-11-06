@@ -1,0 +1,7 @@
+name: logic-speed-five
+displayName: "Logic Speed Five"
+author: "Codex"
+main: ru.codex.mindustry.logicspeedfive.LogicSpeedFive
+version: "1.2.0"
+description: "Configurable instruction rates for vanilla logic processors; wait duration is unchanged."
+minGameVersion: 160
