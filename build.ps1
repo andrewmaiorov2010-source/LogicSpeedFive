@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $buildRoot = Join-Path $projectRoot 'build'
 $classesDir = Join-Path $buildRoot 'classes'
-$jarPath = Join-Path $buildRoot 'LogicSpeedFive-1.2.0.jar'
+$jarPath = Join-Path $buildRoot 'LogicSpeedFive-1.3.0.jar'
 
 if (-not (Test-Path -LiteralPath $MindustryJar -PathType Leaf)) {
     throw "Mindustry JAR not found: $MindustryJar"
